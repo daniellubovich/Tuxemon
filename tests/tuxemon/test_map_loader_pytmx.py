@@ -8,10 +8,20 @@ from tuxemon.map_loader import TMXMapLoader
 
 class TestTMXMapLoaderRegionTiles(unittest.TestCase):
     def setUp(self):
-        self.properties = {"a": 1, "enter": "up", "b": 3, "exit": "down", "continue": "left"}
-        self.region = Mock(x=0, y=16, width=32, height=48, properties=self.properties)
+        self.properties = {
+            "a": 1,
+            "enter": "up",
+            "b": 3,
+            "exit": "down",
+            "continue": "left",
+        }
+        self.region = Mock(
+            x=0, y=16, width=32, height=48, properties=self.properties
+        )
         self.grid_size = (16, 16)
-        self.result = list(TMXMapLoader.region_tiles(self.region, self.grid_size))
+        self.result = list(
+            TMXMapLoader.region_tiles(self.region, self.grid_size)
+        )
 
     def test_result_is_point_and_properties_tuple(self):
         point = self.result[0][0]
@@ -37,12 +47,30 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
     def test_correct_result(self):
         self.assertEqual(
             [
-                ((0, 1), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((1, 1), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((0, 2), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((1, 2), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((0, 3), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((1, 3), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
+                (
+                    (0, 1),
+                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
+                ),
+                (
+                    (1, 1),
+                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
+                ),
+                (
+                    (0, 2),
+                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
+                ),
+                (
+                    (1, 2),
+                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
+                ),
+                (
+                    (0, 3),
+                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
+                ),
+                (
+                    (1, 3),
+                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
+                ),
             ],
-            self.result
+            self.result,
         )

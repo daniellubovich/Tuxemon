@@ -29,17 +29,17 @@
 #
 
 from __future__ import annotations
+
 import logging
+import operator
 import random
+from typing import TYPE_CHECKING, List, Optional, Sequence, Tuple, TypedDict
 
-
-from tuxemon import formula
-from tuxemon import prepare
+from tuxemon import formula, prepare
 from tuxemon.db import db, process_targets
 from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
-from typing import Optional, Sequence, TYPE_CHECKING, TypedDict, List, Tuple
-import operator
+
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
@@ -86,13 +86,16 @@ class Technique:
             For example, monster that obtains life with lifeleech.
 
     """
+
     def __init__(
         self,
         slug: Optional[str] = None,
         carrier: Optional[Monster] = None,
         link: Optional[Monster] = None,
     ) -> None:
-        self._combat_counter = 0  # number of turns that this technique has been active
+        self._combat_counter = (
+            0  # number of turns that this technique has been active
+        )
         self._life_counter = 0
         self.accuracy = 0.0
         self.animation = ""
@@ -123,7 +126,6 @@ class Technique:
         self.use_tech = ""
         self.old_stats_data: List[Sequence[int]] = []
 
-
         # If a slug of the technique was provided, autoload it.
         if slug:
             self.load(slug)
@@ -139,7 +141,7 @@ class Technique:
 
         results = db.lookup(slug, table="technique")
         self.slug = results["slug"]  # a short English identifier
-        self.name = T.translate(self.slug)  # locale-specific string
+        self.name = T.translate(self.slug)
 
         self.sort = results["sort"]
 
@@ -165,7 +167,6 @@ class Technique:
             self.type1 = self.type2 = None
 
         self.power = results.get("power", self.power)
-
 
         self.statspeed = results.get("statspeed")
         self.stathp = results.get("stathp")
@@ -224,10 +225,16 @@ class Technique:
 
     def keep_old_stats(self) -> Sequence[Sequence[int]]:
         mon = self.target
-        self.old_stats_data.append([
-            mon.speed, mon.hp, mon.armour,
-            mon.melee, mon.ranged, mon.dodge,
-        ])
+        self.old_stats_data.append(
+            [
+                mon.speed,
+                mon.hp,
+                mon.armour,
+                mon.melee,
+                mon.ranged,
+                mon.dodge,
+            ]
+        )
         return self.old_stats_data
 
     def use(self, user: Monster, target: Monster) -> TechniqueResult:
@@ -319,18 +326,22 @@ class Technique:
 
         """
         statsmaster = [
-            self.statspeed, self.stathp, self.statarmour,
-            self.statmelee, self.statranged, self.statdodge,
+            self.statspeed,
+            self.stathp,
+            self.statarmour,
+            self.statmelee,
+            self.statranged,
+            self.statdodge,
         ]
-        statslugs = ['speed', 'hp', 'armour', 'melee', 'ranged', 'dodge']
+        statslugs = ["speed", "hp", "armour", "melee", "ranged", "dodge"]
         newstatvalue = 0
         for stat, slugdata in zip(statsmaster, statslugs):
             if not stat:
                 continue
-            value = stat.get('value', 0)
-            max_deviation = stat.get('max_deviation', 0)
-            operation = stat.get('operation', '+')
-            override = stat.get('overridetofull', False)
+            value = stat.get("value", 0)
+            max_deviation = stat.get("max_deviation", 0)
+            operation = stat.get("operation", "+")
+            override = stat.get("overridetofull", False)
             basestatvalue = getattr(target, slugdata)
             if max_deviation:
                 value = random.randint(
@@ -347,7 +358,7 @@ class Technique:
                 }
                 newstatvalue = ops_dict[operation](basestatvalue, value)
                 setattr(target, slugdata, newstatvalue)
-            if slugdata == 'hp':
+            if slugdata == "hp":
                 if override:
                     target.current_hp = target.hp
                 newstatvalue = 1
@@ -355,9 +366,7 @@ class Technique:
             if newstatvalue <= 0:
                 newstatvalue = 1
                 setattr(target, slugdata, newstatvalue)
-        return {
-            "success": bool(newstatvalue)
-        }
+        return {"success": bool(newstatvalue)}
 
     def calculate_damage(
         self,

@@ -28,14 +28,23 @@
 #
 
 from __future__ import annotations
+
 import json
 import logging
 import os
 from operator import itemgetter
+from typing import (
+    Any,
+    Dict,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    TypedDict,
+    overload,
+)
 
 from tuxemon import prepare
-from typing import Any, Mapping, Dict, Sequence, TypedDict, overload, Literal,\
-    Optional
 
 logger = logging.getLogger(__name__)
 
@@ -185,16 +194,20 @@ class JSONInventory(TypedDict):
     slug: str
     inventory: Mapping[str, Optional[int]]
 
+
 class JSONEconomyItemOptionalFields(TypedDict, total=False):
     price: int
     cost: int
 
+
 class JSONEconomyItem(TypedDict):
     item_name: str
+
 
 class JSONEconomy(TypedDict):
     slug: str
     items: Sequence[JSONEconomyItem]
+
 
 def process_targets(json_targets: JSONTarget) -> Sequence[str]:
     """Return values in order of preference for targeting things.
@@ -218,7 +231,7 @@ def process_targets(json_targets: JSONTarget) -> Sequence[str]:
                     key=itemgetter(1),
                     reverse=True,
                 ),
-            )
+            ),
         )
     )
 
@@ -312,7 +325,9 @@ class JSONDatabase:
         if item["slug"] not in self.database[table]:
             self.database[table][item["slug"]] = item
         else:
-            logger.warning("Error: Item with slug %s was already loaded.", item)
+            logger.warning(
+                "Error: Item with slug %s was already loaded.", item
+            )
 
     @overload
     def lookup(self, slug: str) -> JSONMonster:
@@ -388,7 +403,9 @@ class JSONDatabase:
 
         filename = self.database[table][slug]["file"] or slug
         if filename == slug:
-            logger.debug(f"Could not find a file record for slug {slug}, did you remember to create a database record?")
+            logger.debug(
+                f"Could not find a file record for slug {slug}, did you remember to create a database record?"
+            )
 
         return filename
 

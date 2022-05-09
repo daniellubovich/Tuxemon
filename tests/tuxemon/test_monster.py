@@ -2,7 +2,7 @@ import unittest
 from unittest import skip
 from unittest.mock import Mock
 
-from tuxemon.monster import Monster, MAX_LEVEL
+from tuxemon.monster import MAX_LEVEL, Monster
 
 
 class MonsterTestBase(unittest.TestCase):

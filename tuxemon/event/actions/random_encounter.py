@@ -20,18 +20,19 @@
 #
 
 from __future__ import annotations
+
 import logging
 import random
+from typing import NamedTuple, Optional, Sequence, Union, final
 
 from tuxemon import ai, monster, prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import db, JSONEncounterItem
+from tuxemon.db import JSONEncounterItem, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
-from typing import NamedTuple, Union, final, Sequence, Optional
-from tuxemon.states.world.worldstate import WorldState
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.transition.flash import FlashTransition
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -132,6 +133,7 @@ class RandomEncounterAction(EventAction[RandomEncounterActionParameters]):
         npc = None
         if self.world:
             self.world.remove_entity("random_encounter_dummy")
+
 
 def _choose_encounter(
     encounters: Sequence[JSONEncounterItem],
