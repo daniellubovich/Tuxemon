@@ -271,7 +271,7 @@ def animation_frame_files(
 
     """
     frames = list()
-    pattern = re.compile(rf"{name}[0-9]*\..*")
+    pattern = re.compile(fr"{name}[0-9]*\..*")
     # might be slow on large folders
     for filename in os.listdir(directory):
         if pattern.match(filename):
