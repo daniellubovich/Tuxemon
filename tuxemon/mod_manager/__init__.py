@@ -157,7 +157,11 @@ class Manager:
         if install_deps:
             # This function calls download_package, might cause issues
             self.install_dependencies(
-                author, name, repo, dont_extract=dont_extract, done=installed
+                author=author,
+                name=name,
+                repo=repo,
+                dont_extract=dont_extract,
+                done=installed,
             )
         logging.info("Done!")
 
@@ -268,7 +272,11 @@ class Manager:
         self.remove_package_from_list(name)
 
     def install_local_package(
-        self, filename, name=None, download_deps=False, link_deps=False
+        self,
+        filename,
+        name=None,
+        download_deps=False,
+        link_deps=False,
     ):
         """
         Installs local packages.

@@ -4,9 +4,13 @@ https://github.com/vXtreniusX/TuxemonContentServer
 """
 
 import json
+import os
 import urllib.request
 
 import requests
+
+from tuxemon.constants import paths
+from tuxemon.mod_manager import symlink_missing
 
 
 def update(url):
@@ -40,10 +44,11 @@ def download_package(
 
     url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
     filename = os.path.join(
-        paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip"
+        paths.CACHE_DIR,
+        f"downloaded_packages/{name}.{release}.zip",
     )
 
-    # Apperantly this function is ported from urllib from python2.
+    # Apparently this function is ported from urllib from python2.
     # Maybe replace this in the future?
     # https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve
     urllib.request.urlretrieve(url, filename=filename)
@@ -61,12 +66,22 @@ def download_package(
     if install_deps:
         # This function calls download_package, might cause issues
         self.install_dependencies(
-            name, release, repo, dont_extract=dont_extract, done=installed
+            author=name,
+            name=release,
+            repo=repo,
+            dont_extract=dont_extract,
+            done=installed,
         )
 
 
 def install_dependencies(
-    self, name, release, repo, dont_extract=False, symlink=True, done=None
+    self,
+    name,
+    release,
+    repo,
+    dont_extract=False,
+    symlink=True,
+    done=None,
 ):
     """
     Same as the download_package(), but it includes dependency installing.
@@ -92,7 +107,11 @@ def install_dependencies(
             continue
 
         self.download_package(
-            pack, release, repo, dont_extract=dont_extract, installed=installed
+            pack,
+            release,
+            repo,
+            dont_extract=dont_extract,
+            installed=installed,
         )
 
         # Symlink deps

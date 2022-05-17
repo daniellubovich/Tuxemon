@@ -326,7 +326,8 @@ class JSONDatabase:
             self.database[table][item["slug"]] = item
         else:
             logger.warning(
-                "Error: Item with slug %s was already loaded.", item
+                "Error: Item with slug %s was already loaded.",
+                item,
             )
 
     @overload

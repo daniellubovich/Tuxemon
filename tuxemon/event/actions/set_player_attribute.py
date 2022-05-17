@@ -57,5 +57,7 @@ class SetPlayerAttributeAction(
         attribute = self.parameters[0]
         value = self.parameters[1]
         CommonAction.set_character_attribute(
-            self.session.player, attribute, value
+            self.session.player,
+            attribute,
+            value,
         )

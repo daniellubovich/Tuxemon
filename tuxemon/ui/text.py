@@ -52,7 +52,10 @@ class TextArea(Sprite):
             self._start_text_animation()
         else:
             self.image = draw.shadow_text(
-                self.font, self.font_color, self.font_bg, self._text
+                self.font,
+                self.font_color,
+                self.font_bg,
+                self._text,
             )
 
     def __next__(self) -> None:

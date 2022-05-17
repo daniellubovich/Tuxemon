@@ -64,5 +64,7 @@ class RumbleAction(EventAction[RumbleActionParameters]):
 
         magnitude = int((power * 0.01) * max_power)
         self.session.client.rumble.rumble(
-            -1, length=duration, magnitude=magnitude
+            -1,
+            length=duration,
+            magnitude=magnitude,
         )

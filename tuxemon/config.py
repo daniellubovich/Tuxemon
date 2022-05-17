@@ -73,10 +73,12 @@ class TuxemonConfig:
         self.collision_map = cfg.getboolean("display", "collision_map")
         self.large_gui = cfg.getboolean("display", "large_gui")
         self.controller_overlay = cfg.getboolean(
-            "display", "controller_overlay"
+            "display",
+            "controller_overlay",
         )
         self.controller_transparency = cfg.getint(
-            "display", "controller_transparency"
+            "display",
+            "controller_transparency",
         )
         self.hide_mouse = cfg.getboolean("display", "hide_mouse")
         self.window_caption = cfg.get("display", "window_caption")
@@ -167,9 +169,8 @@ def get_custom_pygame_keyboard_controls(
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)
         event_value: Optional[int] = getattr(events, key, None)
-        for each in values.split(
-            ", "
-        ):  # used incase of multiple keys assigned to 1 method
+        for each in values.split(", "):
+            # used incase of multiple keys assigned to 1 method
             # pygame.locals uses all caps for constants except for letters
             each = each.lower() if len(each) == 1 else each.upper()
             pygame_value: int = getattr(pygame.locals, "K_" + each, None)
@@ -197,10 +198,9 @@ def get_custom_pygame_keyboard_controls_names(
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)
         event_value: Optional[int] = getattr(events, key, None)
-        for each in values.split(
-            ", "
-        ):  # used incase of multiple keys assigned to 1 method
-            # pygame.locals uses all caps for constants except for letters
+        # used incase of multiple keys assigned to 1 method
+        # pygame.locals uses all caps for constants except for letters
+        for each in values.split(", "):
             each = each.lower() if len(each) == 1 else each.upper()
             if each is not None and button_value is not None:
                 custom_controls[each] = button_value

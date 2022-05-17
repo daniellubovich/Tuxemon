@@ -252,21 +252,26 @@ def replace_text(session: Session, text: str) -> str:
         monster = session.player.monsters[i]
         text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
         text = text.replace(
-            "${{monster_" + str(i) + "_desc}}", monster.description
+            "${{monster_" + str(i) + "_desc}}",
+            monster.description,
         )
         text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
         text = text.replace(
-            "${{monster_" + str(i) + "_category}}", monster.category
+            "${{monster_" + str(i) + "_category}}",
+            monster.category,
         )
         text = text.replace("${{monster_" + str(i) + "_shape}}", monster.shape)
         text = text.replace(
-            "${{monster_" + str(i) + "_hp}}", str(monster.current_hp)
+            "${{monster_" + str(i) + "_hp}}",
+            str(monster.current_hp),
         )
         text = text.replace(
-            "${{monster_" + str(i) + "_hp_max}}", str(monster.hp)
+            "${{monster_" + str(i) + "_hp_max}}",
+            str(monster.hp),
         )
         text = text.replace(
-            "${{monster_" + str(i) + "_level}}", str(monster.level)
+            "${{monster_" + str(i) + "_level}}",
+            str(monster.level),
         )
 
     return text

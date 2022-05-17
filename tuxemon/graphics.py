@@ -365,7 +365,8 @@ def scale_sprite(
     sprite.rect.height = int(sprite.rect.height * ratio)
     sprite.rect.center = center
     sprite._original_image = pygame.transform.scale(
-        sprite._original_image, sprite.rect.size
+        sprite._original_image,
+        sprite.rect.size,
     )
     sprite._needs_update = True
 

@@ -107,19 +107,36 @@ class YAMLEventLoader:
             for value in event_data.get("conditions", []):
                 operator, cond_type, args = parse_condition_string(value)
                 condition = MapCondition(
-                    cond_type, args, x, y, w, h, operator, None
+                    type=cond_type,
+                    parameters=args,
+                    x=x,
+                    y=y,
+                    width=w,
+                    height=h,
+                    operator=operator,
+                    name="",
                 )
                 conds.append(condition)
             for value in event_data.get("behav", []):
                 behav_type, args = parse_behav_string(value)
                 if behav_type == "talk":
-                    conds.insert(
-                        0,
-                        MapCondition("to_talk", args, x, y, w, h, "is", None),
+                    condition = MapCondition(
+                        type="to_talk",
+                        parameters=args,
+                        x=x,
+                        y=y,
+                        width=w,
+                        height=h,
+                        operator="is",
+                        name="",
                     )
-                    acts.insert(
-                        0, MapAction("npc_face", [args[0], "player"], None)
+                    conds.insert(0, condition)
+                    action = MapAction(
+                        type="npc_face",
+                        parameters=[args[0], "player"],
+                        name="",
                     )
+                    acts.insert(0, action)
                 else:
                     raise Exception
             if event_type == "interact":
@@ -171,7 +188,9 @@ class TMXMapLoader:
 
         """
         data = pytmx.TiledMap(
-            filename, image_loader=scaled_image_loader, pixelalpha=True
+            filename=filename,
+            image_loader=scaled_image_loader,
+            pixelalpha=True,
         )
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE

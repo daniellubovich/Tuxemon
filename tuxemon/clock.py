@@ -93,7 +93,11 @@ class Scheduler:
                 return next_ts
 
     def schedule(
-        self, func, delay=0.0, repeat=False, soft=False
+        self,
+        func,
+        delay=0.0,
+        repeat=False,
+        soft=False,
     ) -> ScheduledItem:
         """
         Schedule a function to be run sometime in the future.

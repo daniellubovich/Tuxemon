@@ -46,7 +46,10 @@ class PygameEventQueueHandler(EventQueueHandler):
         self._inputs[player].append(handler)
 
     def set_input(
-        self, player: int, element: int, handler: InputHandler[Any]
+        self,
+        player: int,
+        element: int,
+        handler: InputHandler[Any],
     ) -> None:
         """
         Sets an input handler to process.

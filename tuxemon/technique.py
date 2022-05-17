@@ -93,9 +93,8 @@ class Technique:
         carrier: Optional[Monster] = None,
         link: Optional[Monster] = None,
     ) -> None:
-        self._combat_counter = (
-            0  # number of turns that this technique has been active
-        )
+        # number of turns that this technique has been active
+        self._combat_counter = 0
         self._life_counter = 0
         self.accuracy = 0.0
         self.animation = ""

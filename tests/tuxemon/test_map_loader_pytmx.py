@@ -45,32 +45,15 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
         self.assertTrue(all(is_not(*i) for i in comps))
 
     def test_correct_result(self):
+        # fmt: off
         self.assertEqual(
             [
-                (
-                    (0, 1),
-                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
-                ),
-                (
-                    (1, 1),
-                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
-                ),
-                (
-                    (0, 2),
-                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
-                ),
-                (
-                    (1, 2),
-                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
-                ),
-                (
-                    (0, 3),
-                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
-                ),
-                (
-                    (1, 3),
-                    {"enter": ["up"], "exit": ["down"], "continue": "left"},
-                ),
+                ((0, 1), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
+                ((1, 1), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
+                ((0, 2), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
+                ((1, 2), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
+                ((0, 3), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
+                ((1, 3), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
             ],
-            self.result,
+            self.result
         )

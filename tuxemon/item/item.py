@@ -90,14 +90,10 @@ class Item:
         self.images: Sequence[str] = []
         self.type: Optional[str] = None
         self.sfx = None
-        self.sprite = ""  # The path to the sprite to load.
-        self.surface: Optional[
-            pygame.surface.Surface
-        ] = None  # The pygame.Surface object of the item.
-        self.surface_size_original = (
-            0,
-            0,
-        )
+        # The path to the sprite to load.
+        self.sprite = ""
+        self.surface: Optional[pygame.surface.Surface] = None
+        self.surface_size_original = (0, 0)
 
         self.effects: Sequence[ItemEffect[Any]] = []
         self.conditions: Sequence[ItemCondition[Any]] = []

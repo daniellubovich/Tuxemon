@@ -6,11 +6,8 @@ yes, these results are wacky, but they are here for regression testing
 
 import unittest
 
-from tuxemon.script.parser import (
-    parse_action_string,
-    parse_condition_string,
-    split_escaped,
-)
+from tuxemon.script.parser import (parse_action_string, parse_condition_string,
+                                   split_escaped)
 
 
 class TestSplitEscaped(unittest.TestCase):
@@ -121,5 +118,6 @@ class TestParseConditionString(unittest.TestCase):
     def test_space_in_arg(self):
         result = parse_condition_string("spam eggs  ex parrot, cheese shop")
         self.assertEqual(
-            ("spam", "eggs", ["ex parrot", "cheese shop"]), result
+            ("spam", "eggs", ["ex parrot", "cheese shop"]),
+            result,
         )

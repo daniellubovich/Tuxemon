@@ -15,12 +15,12 @@ def symlink_missing(target, *sources):
     for source in sources:
         # Read the source directory
         for i in os.listdir(source):
-            if i != "meta.json":  # Ignore symlinking meta.json
-
-                # Link the contents on an directory
+            # Ignore symlinking meta.json
+            if i != "meta.json":
+                # Link the contents on a directory
                 full_path = os.path.join(source, i)
                 if os.path.isdir(full_path):
-                    for a in os.listdir(full_path):  # For file in the folder
+                    for a in os.listdir(full_path):
                         try:
                             os.mkdir(os.path.join(target, i))
                         except FileExistsError:
@@ -41,8 +41,10 @@ def symlink_missing(target, *sources):
                                         os.path.join(target, i, a),
                                         os.path.join(target, i, a + ".old"),
                                     )
+
                 # Symlink the individual files
                 else:
+                    # fmt: off
                     try:
                         os.symlink(
                             os.path.join(source, i), os.path.join(target, i)

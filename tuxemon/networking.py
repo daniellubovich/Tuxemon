@@ -78,7 +78,9 @@ class TuxemonServer:
             return
 
         self.server = NeteriaServer(
-            Multiplayer(self), server_port=40081, server_name=self.server_name
+            Multiplayer(self),
+            server_port=40081,
+            server_name=self.server_name,
         )
 
     def update(self):

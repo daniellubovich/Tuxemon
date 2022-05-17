@@ -130,7 +130,8 @@ def simple_damage_calculate(
         raise RuntimeError
 
     mult = simple_damage_multiplier(
-        (technique.type1, technique.type2), (target.type1, target.type2)
+        (technique.type1, technique.type2),
+        (target.type1, target.type2),
     )
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
