@@ -16,7 +16,11 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
             "continue": "left",
         }
         self.region = Mock(
-            x=0, y=16, width=32, height=48, properties=self.properties
+            x=0,
+            y=16,
+            width=32,
+            height=48,
+            properties=self.properties,
         )
         self.grid_size = (16, 16)
         self.result = list(
