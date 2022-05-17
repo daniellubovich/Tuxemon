@@ -6,8 +6,11 @@ yes, these results are wacky, but they are here for regression testing
 
 import unittest
 
-from tuxemon.script.parser import (parse_action_string, parse_condition_string,
-                                   split_escaped)
+from tuxemon.script.parser import (
+    parse_action_string,
+    parse_condition_string,
+    split_escaped,
+)
 
 
 class TestSplitEscaped(unittest.TestCase):
