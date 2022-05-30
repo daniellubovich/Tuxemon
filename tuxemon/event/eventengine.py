@@ -272,10 +272,8 @@ class EventEngine:
             logger.debug(f'map condition "{cond_data.type}" is not loaded')
             return False
 
-        result = (
-            map_condition.test(self.session, cond_data)
-            == cond_data.operator
-            == "is"
+        result = map_condition.test(self.session, cond_data) == (
+            cond_data.operator == "is"
         )
         logger.debug(
             f'map condition "{map_condition.name}": {result} ({cond_data})'
