@@ -479,9 +479,8 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     sprites into columns.
     """
 
-    orientation: Literal[
-        "horizontal"
-    ] = "horizontal"  # default, and only implemented
+    # default, and only implemented
+    orientation: Literal["horizontal"] = "horizontal"
     expand = True  # True: fill all space of parent. False: more compact
     _2d_movement_dict: Final = {
         buttons.LEFT: ("lr", -1),

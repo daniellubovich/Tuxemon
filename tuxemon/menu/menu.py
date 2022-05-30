@@ -197,9 +197,8 @@ class Menu(Generic[T], state.State):
     shrink_to_items = False  # fit the border to contents
     escape_key_exits = True  # escape key closes menu
     animate_contents = False  # show contents while window opens
-    touch_aware = (
-        True  # if true, then menu items can be selected with the mouse/touch
-    )
+    # if true, then menu items can be selected with the mouse/touch
+    touch_aware = True
 
     def startup(self, *, selected_index: int = 0, **kwargs: Any) -> None:
         self.rect = self.rect.copy()  # do not remove!

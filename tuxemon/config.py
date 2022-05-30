@@ -92,12 +92,14 @@ class TuxemonConfig:
         self.starting_map = cfg.get("game", "starting_map")
         self.cli = cfg.getboolean("game", "cli_enabled")
         self.net_controller_enabled = cfg.getboolean(
-            "game", "net_controller_enabled"
+            "game",
+            "net_controller_enabled",
         )
         self.locale = cfg.get("game", "locale")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean(
-            "game", "recompile_translations"
+            "game",
+            "recompile_translations",
         )
         self.skip_titlescreen = cfg.getboolean("game", "skip_titlescreen")
         self.compress_save: Optional[str] = cfg.get("game", "compress_save")
@@ -106,25 +108,32 @@ class TuxemonConfig:
 
         # [gameplay]
         self.items_consumed_on_failure = cfg.getboolean(
-            "gameplay", "items_consumed_on_failure"
+            "gameplay",
+            "items_consumed_on_failure",
         )
         self.encounter_rate_modifier = cfg.getfloat(
-            "gameplay", "encounter_rate_modifier"
+            "gameplay",
+            "encounter_rate_modifier",
         )
         self.default_monster_storage_box = cfg.get(
-            "gameplay", "default_monster_storage_box"
+            "gameplay",
+            "default_monster_storage_box",
         )
         self.default_item_storage_box = cfg.get(
-            "gameplay", "default_item_storage_box"
+            "gameplay",
+            "default_item_storage_box",
         )
         self.default_monster_catch_rate = cfg.getfloat(
-            "gameplay", "default_monster_catch_rate"
+            "gameplay",
+            "default_monster_catch_rate",
         )
         self.default_upper_monster_catch_resistance = cfg.getfloat(
-            "gameplay", "default_upper_monster_catch_resistance"
+            "gameplay",
+            "default_upper_monster_catch_resistance",
         )
         self.default_lower_monster_catch_resistance = cfg.getfloat(
-            "gameplay", "default_lower_monster_catch_resistance"
+            "gameplay",
+            "default_lower_monster_catch_resistance",
         )
 
         # [player]

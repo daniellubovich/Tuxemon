@@ -141,7 +141,14 @@ class YAMLEventLoader:
                     raise Exception
             if event_type == "interact":
                 cond_data = MapCondition(
-                    "player_facing_tile", list(), x, y, w, h, "is", None
+                    "player_facing_tile",
+                    list(),
+                    x,
+                    y,
+                    w,
+                    h,
+                    "is",
+                    None,
                 )
                 conds.append(cond_data)
 

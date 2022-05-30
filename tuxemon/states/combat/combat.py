@@ -202,9 +202,8 @@ class CombatState(CombatAnimations):
         self._technique_cache = TechniqueAnimationCache()
         self._decision_queue: List[Monster] = []
         self._action_queue: List[EnqueuedAction] = []
-        self._status_icons: List[
-            Sprite
-        ] = []  # list of sprites that are status icons
+        # list of sprites that are status icons
+        self._status_icons: List[Sprite] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
         self._animation_in_progress = False  # if true, delay phase change
@@ -910,12 +909,14 @@ class CombatState(CombatAnimations):
                 if target_sprite:
                     self.task(
                         partial(
-                            self.animate_sprite_take_damage, target_sprite
+                            self.animate_sprite_take_damage,
+                            target_sprite,
                         ),
                         hit_delay + 0.2,
                     )
                     self.task(
-                        partial(self.blink, target_sprite), hit_delay + 0.6
+                        partial(self.blink, target_sprite),
+                        hit_delay + 0.6,
                     )
 
                 # TODO: track total damage

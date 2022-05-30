@@ -263,7 +263,8 @@ def get_index_of_latest_save() -> Optional[int]:
         save_data = open_save_file(save_path)
         if save_data is not None:
             time_of_save = datetime.datetime.strptime(
-                save_data["time"], TIME_FORMAT
+                save_data["time"],
+                TIME_FORMAT,
             )
             times.append((slot_index, time_of_save))
     if len(times) > 0:
